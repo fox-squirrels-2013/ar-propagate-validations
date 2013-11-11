@@ -1,4 +1,9 @@
 <h2>Create an event</h2>
+<% if error_show_page? %>
+
+<h6>Error(s) in form submission: <%= @event.errors.messages %></h6>
+<h6>Please correct the values and try again!</h6>
+<% end %>
 <form action="/events/create" method="post">
   <p>
     Name: <INPUT type="text" name="organizer_name" value=<%= @event.organizer_name %>><BR>
