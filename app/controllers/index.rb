@@ -13,6 +13,7 @@ get '/events/new' do
 end
 
 post '/events/create' do
-  Event.create!(params)
+  event = Event.create(params)
+  p event.errors.messages
   redirect '/'
 end
