@@ -9,11 +9,16 @@ get '/events/:id/show' do |id|
 end
 
 get '/events/new' do
+  @event = Event.new
   erb :event_create
 end
 
 post '/events/create' do
-  event = Event.create(params)
-  p event.errors.messages
-  redirect '/'
+  @event = Event.new(params)
+  if @event.save
+    redirect '/'
+  else
+    p @event.errors.messages
+    erb :event_create
+  end
 end
